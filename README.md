@@ -1,6 +1,8 @@
 # StudyR
 R 학습 리포지토리
 
+![R](https://download.logo.wine/logo/R_(programming_language)/R_(programming_language)-Logo.wine.png)
+
 ### 1일차
 - R 설치
 - R 활용 시각화(산점도, boxplot 차트)
