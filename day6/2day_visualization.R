@@ -107,3 +107,40 @@ ggplot(data=df_mpg,aes(x=reorder(manufacturer, -mean_cty),
 
 # Q2. class(자동차 종류)의 빈도수를 표현한 막대그래프
 ggplot(data=mpg, aes(x=class)) + geom_bar()
+
+
+
+#---------------------------------------------------------------------------
+# 선그래프 - 시간에 따라 달라지는 데이터 표현하기
+# 선그래프(Line Chart) : 데이터를 선으로 표현한 그래프
+# 시계열 그래프(Time Series Chart) : 일정 시간 간격을 두고 나열된 시계열 데이터를 
+# 선으로 표현한 그래프, 환율, 주가지수 등 경제 지표가 시간에 따라 어떻게 변하는지 표현할 때 활용
+
+# 시계열 그래프 만들기
+head(economics)
+economics=as.data.frame(ggplot2::economics)
+ggplot(data=economics, aes(x=date, y=unemploy))+geom_line()
+
+
+# Q1. psavert(개인 저축률)가 시간에 따라서 어떻게 변해왔는지 알아보려함
+# 시간에 따른 개인 저축률의 변화를 나타낸 시계열 그래프를 만들기
+ggplot(data=economics, aes(x=date, y=psavert))+geom_line()
+
+
+#---------------------------------------------------------------------------
+# 상자그림 - 집단 간 분포 차이 표현하기
+# 상자 그림(Box plot) : 데이터의 분표(퍼져 있는 형태)를 직사각형 상자모양으로 표현
+
+# 상자 그림 만들기
+ggplot(data=mpg, aes(x=drv, y=hwy))+geom_boxplot() # 구동방식 별 고속도로 연비의 관계
+
+# Q1. class(자동차 종류)가 "compact", "subcompact", "suv"인 자동차 cty(도시연비)의 상자 그림
+class_mpg=mpg%>% 
+  filter(class %in% c("compact", "subcompact", "suv"))
+ggplot(data=class_mpg, aes(x=class, y=cty))+geom_boxplot()
+
+
+
+
+# geom_col( ) : 평균값을 막대 길이로 표현할 때 사용
+# geom_bar( ) : 값의 개수 즉, 빈도를 막대 길이로 표현할 때 사용
